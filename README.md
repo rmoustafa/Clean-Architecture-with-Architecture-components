@@ -12,7 +12,11 @@ Architectural approach
 -
 ![clean_architecture_layers](https://user-images.githubusercontent.com/16631131/44717362-73084080-aac5-11e8-9029-10b3da073804.png)
 
-Architectural reactive approach with MVVM
+# Android Architecture components Approach
+![final-architecture](https://user-images.githubusercontent.com/16631131/44723199-fb8fdc80-aad7-11e8-88b4-dbd93d7441a9.png)
+
+
+Android Architecture components with clean Architectural reactive approach
 -
 ![clean_architecture_layers_details2](https://user-images.githubusercontent.com/16631131/44722878-2594cf00-aad7-11e8-8820-feedf17b0ba1.png)
 
