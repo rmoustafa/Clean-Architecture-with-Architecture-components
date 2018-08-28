@@ -14,7 +14,8 @@ Architectural approach
 
 Architectural reactive approach with MVVM
 -
-![clean_architecture_layers_details2](https://user-images.githubusercontent.com/16631131/44718188-f460d280-aac7-11e8-9288-8f02951648eb.png)
+![clean_architecture_layers_details2](https://user-images.githubusercontent.com/16631131/44722878-2594cf00-aad7-11e8-8820-feedf17b0ba1.png)
+
 
 ## Libraries
 
