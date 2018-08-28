@@ -1,6 +1,9 @@
 # Clean Architecture with Android Architecture components
 Android simple example shows how to use the clean architecture pattern with android architecture components
 
+This example contains two screens. One shows a list of customers retrieved from a remote server, then saves data in a local database for offline running.
+The second screen shows a resutarant tables map for customer reservation
+
 Clean Architecture
 -
 ![clean_architecture](https://user-images.githubusercontent.com/16631131/44717299-53711800-aac5-11e8-86b5-d3bda1035abc.png)
