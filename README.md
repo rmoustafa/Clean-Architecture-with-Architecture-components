@@ -26,6 +26,7 @@ Android Architecture components with clean Architectural reactive approach
 - Android Architecture components (LiveData, Viewmodel, Room)
 - RxJava 2
 - Dagger 2.11
+- JUnit4, Espresso, Mockito
 - Retrrofit 2.x
 - GSon
 - Butterknife
