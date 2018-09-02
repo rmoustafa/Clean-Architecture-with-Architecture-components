@@ -2,6 +2,7 @@ package com.example.ramadanmoustafa.tablereservation.data.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.VisibleForTesting;
 
 import com.example.ramadanmoustafa.tablereservation.data.entities.Table;
 import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
@@ -37,7 +38,7 @@ public class TableRepositoryImp implements TableRepository{
         MutableLiveData<BaseReactiveResponse<List<Table>>> response = new MutableLiveData<>();
         mCompositeDisposable.add(mServiceApi.getTableMap()
                 .flatMap(list -> Observable.fromIterable(list)
-                .map(this::mapStringToTableItem)
+                .map(this::mapBooleanToTableItem)
                 .toList()
                 .toObservable())
                 .doOnSubscribe(disposable -> response.postValue(new BaseReactiveResponse(true)))
@@ -60,7 +61,8 @@ public class TableRepositoryImp implements TableRepository{
         return response;
     }
 
-    private Table mapStringToTableItem(boolean isAvailable){
+    @VisibleForTesting
+     Table mapBooleanToTableItem(boolean isAvailable){
         Table table = new Table(++id, isAvailable);
         return table;
     }

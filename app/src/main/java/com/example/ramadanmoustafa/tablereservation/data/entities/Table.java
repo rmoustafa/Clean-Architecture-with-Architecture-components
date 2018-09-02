@@ -26,4 +26,21 @@ public class Table {
     public void setTableId(int tableId) {
         this.tableId = tableId;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Table)) {
+            return false;
+        }
+
+        Table c = (Table) o;
+
+        // Compare the data members and return accordingly
+        return (tableId == c.tableId && isAvailable == c.isAvailable);
+    }
 }

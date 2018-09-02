@@ -23,7 +23,7 @@ public class CustomersViewModel extends ViewModel {
 
     public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers() {
         if(mCustomersLiveData == null)
-            mCustomersLiveData = mGetCustomersUseCase.getCustomers();
+            mCustomersLiveData = mGetCustomersUseCase.getCustomers(true);
         return mCustomersLiveData;
 
     }

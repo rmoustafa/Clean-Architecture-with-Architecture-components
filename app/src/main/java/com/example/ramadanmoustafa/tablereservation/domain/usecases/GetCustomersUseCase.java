@@ -23,7 +23,7 @@ public class GetCustomersUseCase {
         mRepository = repository;
     }
 
-    public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(){
-        return mRepository.getCustomers();
+    public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(boolean force_update){
+        return mRepository.getCustomers(force_update);
     }
 }

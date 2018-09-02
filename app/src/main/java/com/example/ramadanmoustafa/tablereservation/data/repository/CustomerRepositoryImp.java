@@ -23,8 +23,6 @@ public class CustomerRepositoryImp implements CustomerRepository {
     private final CustomerDao mCustomerDao;
     private CompositeDisposable mCompositeDisposable;
 
-    private boolean refreshData = true; //indicates the data source(true means remote, false = locale db),
-    // it should be adjusted periodically(each 10 minute for example) but this is just for simplicity
 
     @Inject
     public CustomerRepositoryImp(ServiceApi serviceApi, CustomerDao customerDao){
@@ -34,12 +32,12 @@ public class CustomerRepositoryImp implements CustomerRepository {
     }
 
     /**
-     * Returns data from remote server or locally based on {@link refreshData}
+     * Returns data from remote server or locally based on {@param forceUpdate}
      */
     @Override
-    public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(){
+    public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(boolean forceUpdate){
         MutableLiveData<BaseReactiveResponse<List<Customer>>> response = new MutableLiveData<>();
-        if( !refreshData ) { //Fetch from db
+        if( !forceUpdate ) { //Fetch from db
             mCompositeDisposable.add(mCustomerDao.getCustomers()
                     .doOnSubscribe(disposable -> response.postValue(new BaseReactiveResponse(true)))
                     .subscribeOn(Schedulers.io())
@@ -114,7 +112,8 @@ public class CustomerRepositoryImp implements CustomerRepository {
 
     @Override
     public void onCleared() {
-        mCompositeDisposable.dispose();
+        if(!mCompositeDisposable.isDisposed())
+            mCompositeDisposable.dispose();
     }
 
 }

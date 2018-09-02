@@ -24,6 +24,15 @@ public class Customer {
     @SerializedName("customerLastName")
     private String customerLastName;
 
+    public Customer(){
+
+    }
+    public Customer(int id, String fname, String lname){
+        this.id = id;
+        this.customerFirstName = fname;
+        this.customerLastName = lname;
+    }
+
 
     public String getCustomerFirstName() {
         return customerFirstName;

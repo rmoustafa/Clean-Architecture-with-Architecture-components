@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface CustomerRepository {
 
-    LiveData<BaseReactiveResponse<List<Customer>>> getCustomers();
+    LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(boolean force_update);
 
     //TODO: The other functions should be added here like (updateCustomers, add, delete, getCustomer(id),...)
 
