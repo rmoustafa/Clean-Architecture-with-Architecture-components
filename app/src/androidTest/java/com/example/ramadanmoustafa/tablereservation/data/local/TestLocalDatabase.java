@@ -38,7 +38,7 @@ public class TestLocalDatabase {
     }
 
     @Test
-    public void writeUserAndReadInList() throws Exception {
+    public void testInsertDeleteLoadFromDB() throws Exception {
         Customer customer = new Customer(1,"fname","lname");
         Single<List<Customer>> savedCustomers;
         Customer[] customers = new Customer[]{customer, new Customer(2,"fname2","lname2")};
