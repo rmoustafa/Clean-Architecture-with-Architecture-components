@@ -3,7 +3,7 @@ package com.example.ramadanmoustafa.tablereservation.data.repository;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.data.entities.Customer;
 import com.example.ramadanmoustafa.tablereservation.data.local.CustomerDao;
 import com.example.ramadanmoustafa.tablereservation.data.remote.ServiceApi;
@@ -35,11 +35,11 @@ public class CustomerRepositoryImp implements CustomerRepository {
      * Returns data from remote server or locally based on {@param forceUpdate}
      */
     @Override
-    public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(boolean forceUpdate){
-        MutableLiveData<BaseReactiveResponse<List<Customer>>> response = new MutableLiveData<>();
+    public LiveData<DataResponse<List<Customer>>> getCustomers(boolean forceUpdate){
+        MutableLiveData<DataResponse<List<Customer>>> response = new MutableLiveData<>();
         if( !forceUpdate ) { //Fetch from db
             mCompositeDisposable.add(mCustomerDao.getCustomers()
-                    .doOnSubscribe(disposable -> response.postValue(new BaseReactiveResponse(true)))
+                    .doOnSubscribe(disposable -> response.postValue(DataResponse.loading(true)))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
@@ -47,13 +47,13 @@ public class CustomerRepositoryImp implements CustomerRepository {
                                 @Override
                                 public void accept(List<Customer> customers) throws Exception {
 
-                                    response.setValue(new BaseReactiveResponse<>(customers));
+                                    response.setValue(DataResponse.success(customers));
                                 }
                             },
                             new Consumer<Throwable>() {
                                 @Override
                                 public void accept(Throwable throwable) throws Exception {
-                                    response.setValue(new BaseReactiveResponse<>(throwable));
+                                    response.setValue(DataResponse.error(throwable));
                                 }
                             }
 
@@ -63,14 +63,14 @@ public class CustomerRepositoryImp implements CustomerRepository {
         }
         else { //fetch from remote api
             mCompositeDisposable.add(mServiceApi.getCustomerList()
-                    .doOnSubscribe(disposable -> response.postValue(new BaseReactiveResponse(true)))
+                    .doOnSubscribe(disposable -> response.postValue(DataResponse.loading(true)))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             new Consumer<List<Customer>>() {
                                 @Override
                                 public void accept(List<Customer> customers) throws Exception {
-                                    response.setValue(new BaseReactiveResponse<>(customers));
+                                    response.setValue(DataResponse.success(customers));
                                     saveCustomers(customers);
 
                                 }
@@ -78,7 +78,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
                             new Consumer<Throwable>() {
                                 @Override
                                 public void accept(Throwable throwable) throws Exception {
-                                    response.setValue(new BaseReactiveResponse<>(throwable));
+                                    response.setValue(DataResponse.error(throwable));
                                 }
                             }
 

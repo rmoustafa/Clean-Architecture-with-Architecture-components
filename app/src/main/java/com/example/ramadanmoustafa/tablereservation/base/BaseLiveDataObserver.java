@@ -8,19 +8,22 @@ import android.support.annotation.Nullable;
  * Much better than Observer.onChanged
  * @param <R>
  */
-public abstract class BaseLiveDataObserver<R extends BaseReactiveResponse> implements Observer<R> {
+public abstract class BaseLiveDataObserver<R extends DataResponse> implements Observer<R> {
     @Override
-    public void onChanged(@Nullable R apiResponse) {
-        if(apiResponse!= null){
-            if(apiResponse.isLoading()) {
-                onProgress(true);
-            }
-            else{
-               onProgress(false);
-                if(apiResponse.isSuccessful())
-                    onSuccess(apiResponse);
-                else
-                    onError(apiResponse.getApiErrorMessage());
+    public void onChanged(@Nullable R response) {
+        if(response!= null){
+            switch (response.getStatus()){
+                case LOADING:
+                    onProgress(true);
+                    break;
+                case SUCCESS:
+                    onSuccess(response);
+                    break;
+                case ERROR:
+                    onError(response.getErrorMessage());
+                    break;
+                    default:
+                        break;
             }
         }
 

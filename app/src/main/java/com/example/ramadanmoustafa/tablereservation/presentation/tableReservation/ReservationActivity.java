@@ -1,7 +1,6 @@
 package com.example.ramadanmoustafa.tablereservation.presentation.tableReservation;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,7 +11,7 @@ import android.widget.ProgressBar;
 import com.example.ramadanmoustafa.tablereservation.R;
 import com.example.ramadanmoustafa.tablereservation.base.BaseActivity;
 import com.example.ramadanmoustafa.tablereservation.data.entities.Table;
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.base.BaseLiveDataObserver;
 
 import java.util.List;
@@ -57,11 +56,11 @@ public class ReservationActivity extends BaseActivity<ReservationViewModel> {
     }
 
     private void observeTableMap() {
-        mViewModel.getTableMap().observe(this, new BaseLiveDataObserver<BaseReactiveResponse<List<Table>>>() {
+        mViewModel.getTableMap().observe(this, new BaseLiveDataObserver<DataResponse<List<Table>>>() {
             @Override
-            public void onSuccess(@Nullable BaseReactiveResponse<List<Table>> data) {
+            public void onSuccess(@Nullable DataResponse<List<Table>> data) {
                 //update ui
-                mAdapter.updateDataSet(data.getBody());
+                mAdapter.updateDataSet(data.getData());
                 mProgressBar.setVisibility(View.GONE);
             }
 
@@ -74,7 +73,7 @@ public class ReservationActivity extends BaseActivity<ReservationViewModel> {
 
             @Override
             public void onProgress(boolean isShown) {
-                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(isShown? View.VISIBLE: View.GONE);
 
 
             }

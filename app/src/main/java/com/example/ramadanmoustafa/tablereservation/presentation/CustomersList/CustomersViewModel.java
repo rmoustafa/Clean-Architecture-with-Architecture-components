@@ -3,7 +3,7 @@ package com.example.ramadanmoustafa.tablereservation.presentation.CustomersList;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.data.entities.Customer;
 import com.example.ramadanmoustafa.tablereservation.domain.usecases.GetCustomersUseCase;
 
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 public class CustomersViewModel extends ViewModel {
 
-    private LiveData<BaseReactiveResponse<List<Customer>>> mCustomersLiveData;
+    private LiveData<DataResponse<List<Customer>>> mCustomersLiveData;
     private GetCustomersUseCase mGetCustomersUseCase;
 
     @Inject
@@ -21,7 +21,7 @@ public class CustomersViewModel extends ViewModel {
         mGetCustomersUseCase = getCustomersUseCase;
     }
 
-    public LiveData<BaseReactiveResponse<List<Customer>>> getCustomers() {
+    public LiveData<DataResponse<List<Customer>>> getCustomers() {
         if(mCustomersLiveData == null)
             mCustomersLiveData = mGetCustomersUseCase.getCustomers(true);
         return mCustomersLiveData;

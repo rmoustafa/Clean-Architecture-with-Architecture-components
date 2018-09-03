@@ -2,7 +2,7 @@ package com.example.ramadanmoustafa.tablereservation.data.repository;
 
 import android.arch.lifecycle.LiveData;
 
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.data.entities.Customer;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface CustomerRepository {
 
-    LiveData<BaseReactiveResponse<List<Customer>>> getCustomers(boolean force_update);
+    LiveData<DataResponse<List<Customer>>> getCustomers(boolean force_update);
 
     //TODO: The other functions should be added here like (updateCustomers, add, delete, getCustomer(id),...)
 

@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.VisibleForTesting;
 
 import com.example.ramadanmoustafa.tablereservation.data.entities.Table;
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.data.remote.ServiceApi;
 
 import java.util.List;
@@ -32,28 +32,28 @@ public class TableRepositoryImp implements TableRepository{
     }
 
     @Override
-    public LiveData<BaseReactiveResponse<List<Table>>> getTableMap() {
+    public LiveData<DataResponse<List<Table>>> getTableMap() {
 
         //TODO: check in cache/db/remote
-        MutableLiveData<BaseReactiveResponse<List<Table>>> response = new MutableLiveData<>();
+        MutableLiveData<DataResponse<List<Table>>> response = new MutableLiveData<>();
         mCompositeDisposable.add(mServiceApi.getTableMap()
                 .flatMap(list -> Observable.fromIterable(list)
                 .map(this::mapBooleanToTableItem)
                 .toList()
                 .toObservable())
-                .doOnSubscribe(disposable -> response.postValue(new BaseReactiveResponse(true)))
+                .doOnSubscribe(disposable -> response.postValue(DataResponse.loading(true)))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Table>>() {
                                @Override
                                public void accept(List<Table> tableMap) throws Exception {
-                                   response.setValue(new BaseReactiveResponse<>(tableMap));
+                                   response.setValue(DataResponse.success(tableMap));
                                }
                            },
                         new Consumer<Throwable>() {
                             @Override
                             public void accept(Throwable e) throws Exception {
-                                response.setValue(new BaseReactiveResponse<>(e));
+                                response.setValue(DataResponse.error(e));
                             }
                         }
                     ));

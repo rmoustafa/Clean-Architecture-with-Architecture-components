@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import com.example.ramadanmoustafa.tablereservation.R;
 import com.example.ramadanmoustafa.tablereservation.base.BaseActivity;
 import com.example.ramadanmoustafa.tablereservation.data.entities.Customer;
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.base.BaseLiveDataObserver;
 import com.example.ramadanmoustafa.tablereservation.presentation.tableReservation.ReservationActivity;
 
@@ -68,11 +68,11 @@ public class CustomersActivity extends BaseActivity<CustomersViewModel> {
      * Observes the data data change in the viewmodel and then updates the view accordingly
      */
     private void observeCusomers() {
-        mViewModel.getCustomers().observe(this, new BaseLiveDataObserver<BaseReactiveResponse<List<Customer>>>() {
+        mViewModel.getCustomers().observe(this, new BaseLiveDataObserver<DataResponse<List<Customer>>>() {
             @Override
-            public void onSuccess(@Nullable BaseReactiveResponse<List<Customer>> data) {
+            public void onSuccess(@Nullable DataResponse<List<Customer>> data) {
                 //update ui
-                mAdapter.updateDataSet(data.getBody());
+                mAdapter.updateDataSet(data.getData());
                 mProgressBar.setVisibility(View.GONE);
             }
 
@@ -85,7 +85,7 @@ public class CustomersActivity extends BaseActivity<CustomersViewModel> {
 
             @Override
             public void onProgress(boolean isShown) {
-                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(isShown? View.VISIBLE: View.GONE);
 
 
             }

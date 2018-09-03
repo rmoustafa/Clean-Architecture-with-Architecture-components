@@ -3,7 +3,7 @@ package com.example.ramadanmoustafa.tablereservation.domain.usecases;
 import android.arch.lifecycle.LiveData;
 
 import com.example.ramadanmoustafa.tablereservation.data.entities.Table;
-import com.example.ramadanmoustafa.tablereservation.base.BaseReactiveResponse;
+import com.example.ramadanmoustafa.tablereservation.base.DataResponse;
 import com.example.ramadanmoustafa.tablereservation.data.repository.TableRepository;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class GetTableMapUseCase {
         mRepository = repository;
     }
 
-    public LiveData<BaseReactiveResponse<List<Table>>> getTableMap(){
+    public LiveData<DataResponse<List<Table>>> getTableMap(){
         return mRepository.getTableMap();
     }
 }
