@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Single;
-
-import static org.junit.Assert.*;
+import io.reactivex.android.plugins.RxAndroidPlugins;
+import io.reactivex.schedulers.Schedulers;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerRepositoryImpTest {
@@ -32,6 +32,8 @@ public class CustomerRepositoryImpTest {
         List<Customer> customers = Arrays.asList(new Customer(1,"A", "B"),
                 new Customer(2,"AB", "BC"));
         customersObservable = Single.just(customers);
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler(__ -> Schedulers.trampoline());
+
     }
 
     @Test

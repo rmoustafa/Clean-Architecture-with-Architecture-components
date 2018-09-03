@@ -29,8 +29,4 @@ public class GetCustomersUseCaseTest {
         //  CustomerRepository repository = Mockito.mock(CustomerRepository.class);
        // Mockito.when(repository.getCustomers()).thenReturn(io.reactivex.Observable.just(generatedCustomersList()));
     }
-/*
-    private List<Customer> generatedCustomersList() {
-        return Single.
-    }*/
 }

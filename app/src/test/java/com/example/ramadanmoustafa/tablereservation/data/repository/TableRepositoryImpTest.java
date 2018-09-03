@@ -8,7 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Arrays;
+
+import io.reactivex.Observable;
+import io.reactivex.android.plugins.RxAndroidPlugins;
+import io.reactivex.schedulers.Schedulers;
 
 import static org.hamcrest.core.Is.is;
 
@@ -22,6 +29,7 @@ public class TableRepositoryImpTest {
     @Before
     public void setUp() throws Exception {
         tableRepositoryImp =  new TableRepositoryImp(mserviceApi);
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler(__ -> Schedulers.trampoline());
 
     }
     @Test
@@ -30,6 +38,15 @@ public class TableRepositoryImpTest {
         Assert.assertThat(tableRepositoryImp.mapBooleanToTableItem(true), is(table));
         //Assert.assertEquals(tableRepositoryImp.mapBooleanToTableItem(true), table);
         //Mockito.when().thenReturn()
+
+    }
+
+
+    @Test
+    public void validateGetTableMapRemoteApi() {
+        Mockito.doReturn(Observable.just(Arrays.asList(true,false,true))).when(mserviceApi).getTableMap();
+        tableRepositoryImp.getTableMap();
+        Mockito.verify(mserviceApi).getTableMap();
 
     }
 
