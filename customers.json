@@ -1,0 +1,107 @@
+[
+      {
+        "customerFirstName": "Marilyn",
+        "customerLastName": "Monroe",
+        "id": 0
+      },
+      {
+        "customerFirstName": "Abraham",
+        "customerLastName": "Lincoln",
+        "id": 1
+      },
+      {
+        "customerFirstName": "Mother",
+        "customerLastName": "Teresa",
+        "id": 2
+      },
+      {
+        "customerFirstName": "John F.",
+        "customerLastName": "Kennedy",
+        "id": 3
+      },
+      {
+        "customerFirstName": "Martin Luther",
+        "customerLastName": "King",
+        "id": 4
+      },
+      {
+        "customerFirstName": "Nelson",
+        "customerLastName": "Mandela",
+        "id": 5
+      },
+      {
+        "customerFirstName": "Winston",
+        "customerLastName": "Churchill",
+        "id": 6
+      },
+      {
+        "customerFirstName": "Bill",
+        "customerLastName": "Gates",
+        "id": 7
+      },
+      {
+        "customerFirstName": "Muhammad",
+        "customerLastName": "Ali",
+        "id": 8
+      },
+      {
+        "customerFirstName": "Mahatma",
+        "customerLastName": "Gandhi",
+        "id": 9
+      },
+      {
+        "customerFirstName": "Margaret",
+        "customerLastName": "Thatcher",
+        "id": 10
+      },
+      {
+        "customerFirstName": "Charles",
+        "customerLastName": "de Gaule",
+        "id": 11
+      },
+      {
+        "customerFirstName": "Christopher",
+        "customerLastName": "Columbus",
+        "id": 12
+      },
+      {
+        "customerFirstName": "George",
+        "customerLastName": "Orwell",
+        "id": 13
+      },
+      {
+        "customerFirstName": "Charles",
+        "customerLastName": "Darwin",
+        "id": 14
+      },
+      {
+        "customerFirstName": "Elvis",
+        "customerLastName": "Presley",
+        "id": 15
+      },
+      {
+        "customerFirstName": "Albert",
+        "customerLastName": "Einstein",
+        "id": 16
+      },
+      {
+        "customerFirstName": "Paul",
+        "customerLastName": "McCartney",
+        "id": 17
+      },
+      {
+        "customerFirstName": "Plato",
+        "customerLastName": "",
+        "id": 18
+      },
+      {
+        "customerFirstName": "Mikhail",
+        "customerLastName": "Gorbachev",
+        "id": 19
+      },
+      {
+        "customerFirstName": "Le",
+        "customerLastName": "Lincoln",
+        "id": 20
+      }
+    ]
